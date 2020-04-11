@@ -72,30 +72,41 @@
                 </div>
                 <input
                   type="submit"
-                  value="Book To Read"
+                  value="Add Book To Read"
                   class="btnAdd"
                   style="margin-top: 5px; background-color: rgb(123, 201, 123);"
                 />
                 <input
                   type="submit"
-                  value="Book I've Read"
+                  value="I've Read This One"
                   class="btnRead"
                   style="margin: 5 0 0 3; background-color: rgb(134, 183, 247);"
                 />
               </div>
             </form>
+
             <br />
-            <hr />
-            <table class="table1 col-md-12 mx-auto">
-              <thead style="text-align: center;">
+            <table class="table col-md-12 mx-auto">
+              <thead>
                 <tr>
-                  <th>Title</th>
+                  <th>Titles Added</th>
                   <th>Author</th>
                   <th>ISBN #</th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody id="book-list"></tbody>
+              <tbody id="addBook-list"></tbody>
+            </table>
+            <table class="table col-md-12 mx-auto">
+              <thead>
+                <tr>
+                  <th>Titles Read</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="readBook-list"></tbody>
             </table>
           </div>
         </div>
