@@ -44,7 +44,7 @@ UIread.prototype.addBookToReadList = function (bookRead) {
 
 // everything else goes in the prototype
 // Event Listeners
-document.getElementById("book-form").addEventListener("submit", function (e) {
+document.getElementById("addBook").addEventListener("click", function (e) {
   // Get form values
   const title = document.getElementById("title").value,
     author = document.getElementById("author").value,
@@ -62,7 +62,7 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
   e.preventDefault();
 });
 
-document.getElementById("book-form").addEventListener("submit", function (e) {
+document.getElementById("readBook").addEventListener("click", function (e) {
   // Get form values
   const title = document.getElementById("title").value,
     author = document.getElementById("author").value,
