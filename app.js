@@ -26,6 +26,13 @@ UIadd.prototype.addBookToAddList = function (bookAdd) {
   addList.appendChild(row);
 };
 
+// Clear fields
+UIadd.prototype.clearFields = function () {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("isbn").value = "";
+};
+
 // Add book to Read list
 UIread.prototype.addBookToReadList = function (bookRead) {
   const readList = document.getElementById("readBook-list");
@@ -40,6 +47,13 @@ UIread.prototype.addBookToReadList = function (bookRead) {
   `;
 
   readList.appendChild(row);
+};
+
+// Clear fields
+UIread.prototype.clearFields = function () {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("isbn").value = "";
 };
 
 // everything else goes in the prototype
@@ -59,6 +73,9 @@ document.getElementById("addBook").addEventListener("click", function (e) {
   //  Add book to Add list
   uiAdd.addBookToAddList(book);
 
+  // CLear fields
+  uiAdd.clearFields();
+
   e.preventDefault();
 });
 
@@ -76,6 +93,9 @@ document.getElementById("readBook").addEventListener("click", function (e) {
 
   //  Add book to Read list
   uiRead.addBookToReadList(book);
+
+  // CLear fields
+  uiRead.clearFields();
 
   e.preventDefault();
 });
