@@ -67,6 +67,19 @@ const alert = function (message, className) {
 UIadd.prototype.showAlert = alert;
 UIread.prototype.showAlert = alert;
 
+// Delete book
+UIadd.prototype.deleteBook = function (target) {
+  if (target.className === "delete") {
+    target.parentElement.parentElement.remove();
+  }
+};
+
+UIread.prototype.deleteBook = function (target) {
+  if (target.className === "delete") {
+    target.parentElement.parentElement.remove();
+  }
+};
+
 // Clear fields
 let clear = function () {
   document.getElementById("title").value = "";
@@ -78,7 +91,7 @@ UIadd.prototype.clearFields = clear;
 UIread.prototype.clearFields = clear;
 
 // everything else goes in the prototype
-// Event Listeners
+// Event Listeners for book
 document.getElementById("addBook").addEventListener("click", function (e) {
   // Get form values
   const title = document.getElementById("title").value,
@@ -90,6 +103,9 @@ document.getElementById("addBook").addEventListener("click", function (e) {
 
   // Instantiate UI
   const uiAdd = new UIadd();
+
+  // Test to show prototypes
+  // console.log(uiAdd);
 
   // Validate
   if (title === "" || author === "" || isbn === "") {
@@ -120,6 +136,9 @@ document.getElementById("readBook").addEventListener("click", function (e) {
   // Instantiate UI
   const uiRead = new UIread();
 
+  // Test to show prototypes
+  // console.log(uiRead);
+
   // Validate
   if (title === "" || author === "") {
     uiRead.showAlert("Please fill in all fields", "error");
@@ -136,3 +155,31 @@ document.getElementById("readBook").addEventListener("click", function (e) {
 
   e.preventDefault();
 });
+// event listeners for delete X
+document.getElementById("addBook-list").addEventListener("click", function (e) {
+  // Instantiate UI
+  const uiAdd = new UIadd();
+
+  // Delete book
+  uiAdd.deleteBook(e.target);
+
+  // Show alert
+  uiAdd.showAlert("Book Removed", "success");
+
+  e.preventDefault;
+});
+
+document
+  .getElementById("readBook-list")
+  .addEventListener("click", function (e) {
+    // Instantiate UI
+    const uiRead = new UIread();
+
+    // Delete book
+    uiRead.deleteBook(e.target);
+
+    // Show alert
+    uiRead.showAlert("Book Removed", "success");
+
+    e.preventDefault;
+  });
