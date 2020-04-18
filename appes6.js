@@ -57,6 +57,53 @@ class UIadd {
   }
 }
 
+// Local Storage Class
+class Store {
+  static getBooks() {
+    // fetch from LS
+    let books;
+    if (localStorage.getItem("books") === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem("books"));
+    }
+    return books;
+  }
+  static displayBooksAdd() {
+    const books = Store.getBooks();
+    books.forEach(function (book) {
+      const ui = new UIadd(); // instantiated
+      // Add book to UI
+      ui.addBookToAddList(book);
+    });
+  }
+  static displayBooksRead() {
+    const books = Store.getBooks();
+    books.forEach(function (book) {
+      const ui = new UIread(); // instantiated
+      // Add book to UI
+      ui.addBookToAddList(book);
+    });
+  }
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+    books.forEach(function (book, index) {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+}
+
+// DOM Load Event
+document.addEventListener("DOMContentLoaded", Store.displayBooks);
+
 // Event Listeners for add book
 document.getElementById("addBook").addEventListener("click", function (e) {
   // Get form values
@@ -79,6 +126,9 @@ document.getElementById("addBook").addEventListener("click", function (e) {
   } else {
     //  Add book to Read list
     uiAdd.addBookToAddList(book);
+
+    // Add to LS (not instantiated as is static)
+    Store.addBook(book);
 
     // Alert success
     uiAdd.showAlert("Book Added", "success");
@@ -112,6 +162,9 @@ document.getElementById("readBook").addEventListener("click", function (e) {
     //  Add book to Read list
     uiRead.addBookToReadList(book);
 
+    // Add to LS (not instantiated as is static)
+    Store.addBook(book);
+
     // Alert success
     uiRead.showAlert("Book Added", "success");
 
@@ -121,6 +174,7 @@ document.getElementById("readBook").addEventListener("click", function (e) {
 
   e.preventDefault();
 });
+
 // event listeners for delete X
 document.getElementById("addBook-list").addEventListener("click", function (e) {
   // Instantiate UI
@@ -128,6 +182,9 @@ document.getElementById("addBook-list").addEventListener("click", function (e) {
 
   // Delete book
   uiAdd.deleteBook(e.target);
+
+  // Remove from LS
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
   // Show alert
   uiAdd.showAlert("Book Removed", "success");
@@ -143,6 +200,9 @@ document
 
     // Delete book
     uiRead.deleteBook(e.target);
+
+    // Remove from LS
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
     // Show alert
     uiRead.showAlert("Book Removed", "success");
