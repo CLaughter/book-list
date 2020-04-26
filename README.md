@@ -12,7 +12,7 @@
 
 ### Originally coded in vanilla ES5 (file es5app.js) using constructors and prototypes
 
-### This posted coded refactored to vanilla ES6 using classes
+### This posted code refactored to vanilla ES6 using classes
 
 ### Otherwise exactly the same layout and functionality
 
